@@ -127,6 +127,25 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+function edit_st_Callback(hObject, eventdata, handles)
+
+% --- Executes during object creation, after setting all properties.
+function edit_st_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit_stBMI_Callback(hObject, eventdata, handles)
+
+
+% --- Executes during object creation, after setting all properties.
+function edit_stBMI_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
 
 function DrawStatistics
 global PATIENT
@@ -151,7 +170,7 @@ t = 1:range(1);
     legend('Mass')
 
     axes(BMIAxes)
-    line(t, BMI(t), 'Color','green','LineStyle','-', 'LineWidth',2); % line zamiast plot ¿eby nie zmienia³o mi koloru osi 
+    line(t, BMI(t), 'Color','green','LineStyle','-', 'LineWidth',2); 
     grid on;
     set(BMIAxes, 'Tag');
     legend('BMI')
@@ -187,12 +206,6 @@ else
     set(findobj('Tag', 'text4'), 'String', txt);
 end
 
-% c = uicontrol('Style','text');
-% c.String = {'Extraordinarily long text will be wrapped', ...
-% 'inside of a static text field.'};
-% wrappedtext = textwrap(c,c.String)
-
-
 % % % % % % Progress info % % % % % % % % 
 pMass = polyfit(t',mass(t),1);
 a = pMass(1);
@@ -205,41 +218,3 @@ else
 end
 
 
-
-function edit_st_Callback(hObject, eventdata, handles)
-% hObject    handle to edit_st (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit_st as text
-%        str2double(get(hObject,'String')) returns contents of edit_st as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit_st_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit_st (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function edit_stBMI_Callback(hObject, eventdata, handles)
-% hObject    handle to edit_stBMI (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit_stBMI as text
-%        str2double(get(hObject,'String')) returns contents of edit_stBMI as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit_stBMI_CreateFcn(hObject, eventdata, handles)
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end

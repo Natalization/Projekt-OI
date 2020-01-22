@@ -75,7 +75,6 @@ set(ah, 'handlevisibility', 'off', 'visible', 'off')
 
 %importing database and setting data to structure
 global PATIENT 
- 
 db = importdata('PatientData.txt');
 getPatientData = db(strcmp(db.ID, PATIENT.ID), {'Name','Surname', 'DateOfBirth', 'Gender'});
 
@@ -90,22 +89,10 @@ patientyear = split(PATIENT.dateOfBirth, '-');
 % try
 patientyear = str2num(cell2mat(patientyear(3)));
 PATIENT.age = todaysyear - patientyear;
-% catch
-%     warndlg("Patient hasn't been chosen")   
-% end
-
-
     
 set(findobj('Tag', 'edit_name'), 'String', PATIENT.name);
 set(findobj('Tag', 'edit_surname'), 'String', PATIENT.surname);
 set(findobj('Tag', 'edit_age'), 'String', num2str(PATIENT.age));
-
-% try
-%     a = notaFunction(5,6);
-% catch
-%     warning('Problem using function.  Assigning a value of 0.');
-%     a = 0;
-% end
 
 
 % --- Outputs from this function are returned to the command line.
@@ -207,13 +194,13 @@ global CHECK
 contents = cellstr(get(hObject, 'string'));
 choice = contents(get(hObject, 'value'));
 if strcmp(choice, 'Sedentary')
-    MEASURE.level = 1.4;
+    MEASURE.level = 1.53;
     CHECK.lvl = true; 
 elseif strcmp(choice, 'Moderately active')
-    MEASURE.level = 1.7;
+    MEASURE.level = 1.76;
     CHECK.lvl = true;
     elseif strcmp(choice, 'Vigorously active')
-        MEASURE.level = 2;
+        MEASURE.level = 2.25;
         CHECK.lvl = true;
 else
     warndlg('You must choose activity level')
@@ -305,22 +292,7 @@ close(NewMeasurement)
 
 % --- Executes on button press in pushbutton3_back.
 function pushbutton3_back_Callback(hObject, eventdata, handles)
-% global PATIENT
-% PATIENT.ID = '';
-% PATIENT.name = '';
-% PATIENT.surname = '';
-% PATIENT.dateOfBirth = '';
-% PATIENT.gender = '';
-% 
-% global MEASURE
-% MEASURE.BMI = '';
-% MEASURE.BMR = '';
-% MEASURE.DCI = '';
-% MEASURE.level = '';
-% MEASURE.fat = '';
-% MEASURE.carbs = '';
-% MEASURE.protein = '';
- 
+
     
 global CHECK
 CHECK.mass = false;
@@ -340,9 +312,9 @@ height = str2double(PATIENT.height);
 % % % % % % % % % % % % BMI BMR DCI % % % % % % % % % % % % % % 
 MEASURE.BMI = round(mass/(height/100)^2, 2);
 if PATIENT.gender == "Male"
-MEASURE.BMR = round(66.473 + 13.751* mass + 5.0033 * height + 6.755 * PATIENT.age);
+MEASURE.BMR = round(5 + 10* mass + 6.25 * height -( 5* PATIENT.age));
 elseif PATIENT.gender == "Female"
-    MEASURE.BMR = round(655.0955 + 9.5634* mass + 1.8496 * height + 4.6756 * PATIENT.age);
+    MEASURE.BMR = round(-161 + 10* mass + 6.25 * height -(5 * PATIENT.age) );
 end
 
 MEASURE.DCI = round(MEASURE.BMR * MEASURE.level);

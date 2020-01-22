@@ -122,7 +122,7 @@ end
 
 function edit3_date_Callback(hObject, eventdata, handles)
 date = get(hObject, 'string')
-expression = '^(((0)[1-9])|[1-2][0-9]|(3)[0-1])-(((0)[0-9])|((1)[0-2]))-(((1)(9)[0-9]{2})|((2)(0)[0-9]{2}))$';;
+expression = '^(((0)[1-9])|[1-2][0-9]|(3)[0-1])-(((0)[0-9])|((1)[0-2]))-(((1)(9)[0-9]{2})|((2)(0)[0-9]{2}))$';
 startIndex = regexp(date,expression)
 global PATIENT
 global CHECK
@@ -187,7 +187,6 @@ global PATIENT
 
 % % % % % % % % Checking correctness % % % % % % % % % % %
 
-
 PATIENT.ID = getID(PATIENT.name, PATIENT.surname);
 
  % % %  % % % % % % % % % % Saving data to txt % % % % % % % % % % % % %
@@ -209,11 +208,6 @@ PATIENT.name = '';
 PATIENT.surname = '';
 PATIENT.dateOfBirth = '';
 PATIENT.gender = '';
-
-% global CHECK
-% CHECK.name = false;
-% CHECK.surname = false;
-% CHECK.dateOfBirth = false;
 
 
 Patients;
